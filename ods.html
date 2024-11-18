@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principales Desafíos de Sostenibilidad en Cúcuta</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div style="width: 70%; margin: auto;">
+        <canvas id="sustainabilityChart"></canvas>
+    </div>
+    <script>
+        // Datos para la gráfica
+        const data = {
+            labels: ['Escasez de agua', 'Contaminación', 'Urbanización descontrolada', 'Degradación de humedales'],
+            datasets: [{
+                label: 'Impacto (%)',
+                data: [45, 35, 55, 30], // Valores porcentuales
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Configuración del gráfico
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.raw}%`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        title: {
+                            display: true,
+                            text: 'Impacto (%)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Problemas'
+                        }
+                    }
+                }
+            }
+        };
+
+        // Renderizar el gráfico
+        const ctx = document.getElementById('sustainabilityChart').getContext('2d');
+        new Chart(ctx, config);
+    </script>
+</body>
+</html>
